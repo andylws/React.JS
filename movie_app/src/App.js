@@ -81,38 +81,58 @@ import PropTypes from "prop-types";
 // ##############################################################################
 
 
+// class App extends React.Component {
+//   constructor(props){ //JS thing, not React thing
+//     super(props);
+//     console.log("Hello");
+//   }
+//   state = {
+//     count: 0
+//   };
+//   plus = () => {
+//     this.setState(current => ({ count: current.count + 1 }));
+//   };
+//   minus = () => {
+//     this.setState(current => ({ count: current.count - 1 }));
+//   };
+//   componentDidMount(){
+//     console.log("component rendered");
+//   }
+//   componentDidUpdate(){
+//     console.log("component updated");
+//   }
+//   componentWillUnmount(){
+//     console.log("Goodbye");
+//   }
+//   render(){
+//     console.log("I'm rendering");
+//     return (
+//       <div>
+//         <h1>The number is {this.state.count}</h1>
+//         <button onClick={this.plus}>Plus</button>
+//         <button onClick={this.minus}>Minus</button>
+//       </div>
+//     );
+//   }
+// }
+
+
+// ##############################################################################
+
+
 class App extends React.Component {
-  constructor(props){ //JS thing, not React thing
-    super(props);
-    console.log("Hello");
-  }
   state = {
-    count: 0
-  };
-  plus = () => {
-    this.setState(current => ({ count: current.count + 1 }));
-  };
-  minus = () => {
-    this.setState(current => ({ count: current.count - 1 }));
+    isLoading: true,
+    movies: []
   };
   componentDidMount(){
-    console.log("component rendered");
+    setTimeout(() => {
+      this.setState({isLoading: false });
+    }, 6000);
   }
-  componentDidUpdate(){
-    console.log("component updated");
-  }
-  componentWillUnmount(){
-    console.log("Goodbye");
-  }
-  render(){
-    console.log("I'm rendering");
-    return (
-      <div>
-        <h1>The number is {this.state.count}</h1>
-        <button onClick={this.plus}>Plus</button>
-        <button onClick={this.minus}>Minus</button>
-      </div>
-    );
+  render() {
+    const { isLoading } = this.state;
+    return <div>{isLoading ? "Loading..." : "We are ready!"}</div>
   }
 }
 
