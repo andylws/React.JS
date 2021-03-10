@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Movie from "./Movie";
+import "./App.css";
 
 // ##############################################################################
 
@@ -57,11 +58,11 @@ import Movie from "./Movie";
 // ]
 
 // function Player({name, image, rating}) {
-//   return <div>
+//   return <section>
 //     <h2>FC Bayern {name}</h2>
 //     <h4>{rating}/5</h4>
 //     <img src={image} alt={name} />
-//   </div>
+//   </section>
 // }
 
 // Player.propTypes = {
@@ -71,11 +72,11 @@ import Movie from "./Movie";
 // }
 
 // function App() {
-//   return <div>
+//   return <section>
 //     {bayernPlayers.map(player => (
 //       <Player key={player.id} name={player.name} image={player.image} rating={player.rating}/>
 //     ))}
-//   </div>;
+//   </section>;
 // }
 
 // ##############################################################################
@@ -106,11 +107,11 @@ import Movie from "./Movie";
 //   render(){
 //     console.log("I'm rendering");
 //     return (
-//       <div>
+//       <section>
 //         <h1>The number is {this.state.count}</h1>
 //         <button onClick={this.plus}>Plus</button>
 //         <button onClick={this.minus}>Minus</button>
-//       </div>
+//       </section>
 //     );
 //   }
 // }
@@ -138,10 +139,14 @@ class App extends React.Component {
   render() {
     const { isLoading, movies } = this.state;
     return (
-      <div>
-        {isLoading
-          ? "Loading..."
-          : movies.map((movie) => (
+      <section class="container">
+        {isLoading ? (
+          <div class="loader">
+            <span class="loader_text">Loading...</span>
+          </div>
+        ) : (
+          <div class="movies">
+            {movies.map((movie) => (
               <Movie
                 key={movie.id}
                 id={movie.id}
@@ -151,7 +156,9 @@ class App extends React.Component {
                 poster={movie.medium_cover_image}
               />
             ))}
-      </div>
+          </div>
+        )}
+      </section>
     );
   }
 }
